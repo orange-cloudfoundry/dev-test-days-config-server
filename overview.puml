@@ -1,0 +1,21 @@
+@startuml
+title Spring cloud config server
+
+Participant "client"
+Participant "dev-days-config-server"
+Participant "git-repository"
+
+== Initialization ==
+"dev-days-config-server" -> "dev-days-config-server": boostrap
+activate "dev-days-config-server"
+"dev-days-config-server" -> "git-repository" : getConfig
+deactivate "dev-days-config-server"
+
+
+
+== Running ==
+"client" -> "dev-days-config-server" : get-config
+"dev-days-config-server" --> "git-repository" : getConfig
+
+
+@enduml
