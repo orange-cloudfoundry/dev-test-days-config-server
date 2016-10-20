@@ -1,0 +1,26 @@
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: file:///${user.dir}/../config-server-data/
+          searchPaths: '{application}'
+        #config server also should load its config from git repo
+        bootstrap: true
+      # use git branch: final
+      label: final
+  application:
+    #enforce application name to match git repo existing dir name : config-server/
+    name: config-server
+  profiles:
+    #for usage of application-config-server.properties
+    active: config-server
+
+#This key should be set (or at least overriden) with ENCRYPT_KEY env variable
+encrypt:
+  key: aKey
+
+
+
+# Config server should be available here:
+# http://localhost:8888/config-server/config-server/final
